@@ -6,8 +6,7 @@
 
 # (buckets /on/ local_server) must be iterable
 
-# from .main import Fetch, Post
-
+from .main import Fetch, Post
 from .local_server import local_server
 
 

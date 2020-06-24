@@ -8,6 +8,6 @@ def main():
 #         Post | them(events) /to/ Synapse-server
 
 
-while True:
-    main()  # is needed to be async; I've forgotten how to do so
-#     sleep(1)
+# # while True:
+#     main()  # is needed to be async; I've forgotten how to do so
+# #     sleep(1)
