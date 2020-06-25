@@ -1,12 +1,12 @@
 """
 >>> a = Preposition("a")
 >>> 1 /a/ 2 /a/ 3
-{'object': 1, 'a': 3}
+{'obj': 1, 'a': 3}
 
 >>> a = Preposition("a")
 >>> b = Preposition("b")
 >>> 1 /a/ 2 /b/ 3
-{'object': 1, 'a': 2, 'b': 3}
+{'obj': 1, 'a': 2, 'b': 3}
 
 
 Some more contentful examples:
@@ -14,7 +14,7 @@ Some more contentful examples:
 >>> last_events, bucket = ("foo","bar")
 >>> originating_at = Preposition("originating_at")
 >>> last_events /originating_at/ bucket
-{'object': 'foo', 'originating_at': 'bar'}
+{'obj': 'foo', 'originating_at': 'bar'}
 """
 class Preposition:
 
@@ -31,7 +31,7 @@ class Preposition:
             return self.innerObject
         else:
             return {
-                "object": self.innerObject,
+                "obj": self.innerObject,
                 self.name: righthand_operand
             }
 

@@ -9,6 +9,7 @@
 from .main import Fetch, Post
 from .local_server import local_server
 
+from .Preposition import Preposition
 
 # last-events должно быть то же, что и просто events 
 # (например, пустой объект last и перегрузка оператора __rsub__ так, чтобы он ничего не делал)
