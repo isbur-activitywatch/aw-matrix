@@ -1,9 +1,9 @@
-from tweaks import *
+from .tweaks import *
 
 
 def main():
-    pass
-#     for every-bucket in buckets /on/ local_server:
+    for bucket in buckets /on/ local_server:
+        pass
 #         Fetch | last-events /originating_at/ bucket
 #         Post | them(events) /to/ Synapse-server
 
