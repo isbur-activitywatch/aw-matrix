@@ -13,8 +13,6 @@ a /on/ local_server
 
 class TestOnPreposition(unittest.TestCase):
 
-
-
     def test_it_works(self):
         self.assertEqual(
             type(a.contents),
