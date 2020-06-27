@@ -1,0 +1,14 @@
+{
+    "tasks": [
+        {
+            "label": "echo",
+            "type": "shell",
+            "command": "",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

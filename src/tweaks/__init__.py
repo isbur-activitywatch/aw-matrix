@@ -1,30 +1,35 @@
-#     for every-bucket in buckets /on/ local_server:
+#     for bucket in buckets /on/ local_server:
 #         Fetch | last-events /originating_at/ bucket
 #         Post | them(events) /to/ Synapse-server
 
 
+# Common imports
+from .Container import Container    # just to call dibs on name to no to bind name in introspective manner using inspect module
+from .Phrases import define_meaning_of_phrase_
 
 
-####
-#### First Phrase
-#### *for every-bucket in buckets /on/ local_server:*
-####
+@define_meaning_of_phrase_(
+    "for bucket in buckets /on/ local_server:"
+)
+def Definition():
 
+    buckets = Container()    
 
-from .local_server import local_server  # requests.Session bound to address of local AW server
+    from .Infix import Infix
+    @Infix
+    def on (lefthand_operand, righthand_operand):
+        lefthand_operand.contents = righthand_operand.get("/api/0/buckets/").json()
+        return righthand_operand.get("/api/0/buckets/").json()
 
-from .Infix import Infix
-@Infix
-def on (lefthand_operand, righthand_operand):
-    lefthand_operand.contents = righthand_operand.get("/api/0/buckets/").json()
-    return righthand_operand.get("/api/0/buckets/").json()
+    from .local_AW_server import local_AW_server
 
-class Container:
-    pass
-buckets = Container()    # just to call dibs on name to no to bind name in introspective manner using inspect module
+    objs = {
+        "buckets": buckets, 
+        "on": on, 
+        "local_server": local_AW_server
+    }
+    
 
-# bucket is just... bucket? See AW-specification
-#       - server returns list of bucket-id on /api/0/buckets
 
 
 
@@ -35,17 +40,26 @@ buckets = Container()    # just to call dibs on name to no to bind name in intro
 ####
 
 
+from .phrase2 import *
 from .Phrases import Function_With_Prepositions
 @Function_With_Prepositions("Fetch | last-events /originating_at/ bucket")
 def Fetch(events=[], originating_at=""):
-    local_server.post(
-        "/api/0/query",
+    bucket = originating_at
+    n_present = local_server.get_event_count_from_(bucket)
+    events = local_server.get(
+        "/api/0/buckets/"   +
+                    bucket  +
+                    "/events",
         params = {
-            
+            "limit": n_present - n_previous
         }
     )
+    n_previous = n_present
 
-    pass
+    # from matrix_client import *
+    # synapse_server.post(events)
+
+
 
 
 

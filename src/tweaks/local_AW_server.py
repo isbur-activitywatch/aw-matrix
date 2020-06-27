@@ -2,7 +2,7 @@ import requests
 from urllib.parse import urljoin
 
 
-class Site(requests.Session):
+class AW_server(requests.Session):
 
     def __init__(self, url):
         requests.Session.__init__(self)
@@ -15,8 +15,18 @@ class Site(requests.Session):
     def post(self, appendix = "", **kwargs):
         my_url = urljoin(self.base_url, appendix)
         return requests.Session.post(self, my_url, **kwargs)
+    
+    def get_event_count_from_(self, bucket_id):
+        if type(bucket_id) != type(""):
+            raise TypeError("must be str")
+
+        return self.get(
+        "/api/0/buckets/"   +
+                    bucket_id  +
+                    "/events/count"
+        )
 
 
-local_server = Site("http://localhost:5600")
+local_AW_server = AW_server("http://localhost:5600")
 
 

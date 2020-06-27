@@ -31,7 +31,7 @@ class Preposition:
             return self.innerObject
         else:
             return {
-                "obj": self.innerObject,
+                "first_arg": self.innerObject,
                 self.name: righthand_operand
             }
 

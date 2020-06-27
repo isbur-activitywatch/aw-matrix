@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "C:\\tools\\miniconda3\\envs\\aw-matrix\\python.exe",
+    "python.linting.pylintArgs": [
+        "--init-hook",
+        "import sys; sys.path.insert(0, \"c:/work/activitywatch/aw-matrix-client/src\")"
+    ]
+}
