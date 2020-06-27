@@ -2,6 +2,18 @@
     "python.pythonPath": "C:\\tools\\miniconda3\\envs\\aw-matrix\\python.exe",
     "python.linting.pylintArgs": [
         "--init-hook",
-        "import sys; sys.path.insert(0, \"c:/work/activitywatch/aw-matrix-client/src\")"
-    ]
+        "import sys; sys.path.insert(0, \"c:/work/activitywatch/aw-matrix-client/src\")",
+        "--disable",
+        "C0103,C0111,C0326"
+    ],
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./test",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": true
 }

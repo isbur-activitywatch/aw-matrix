@@ -1,7 +1,8 @@
 import unittest
 
 
-from src.test import test_tweaks
+from test.test_tweaks import *
 
 
+print(dir())
 unittest.main()

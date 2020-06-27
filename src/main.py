@@ -1,4 +1,4 @@
-from .tweaks import *
+from tweaks import *
 
 
 # def main():

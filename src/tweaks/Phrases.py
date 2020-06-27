@@ -29,17 +29,31 @@ class Function_With_Prepositions:
         return self.function(**righthand_operand)
 
 
-class define_meaning_of_class_:
+class define_meaning_of_phrase_:
     """
     Sort of dumb decorator class
     Why have I created this one?
     Dunno
     """
-    def __init__(self, phrase_to_define):
-        pass
+    def __init__(self, phrase_to_define, name):
+        self.function_name = name
+        
+        # setattr(module)
+        # pass
 
     def __call__(self, Definition):
-        return Definition
+        Definition()
+
+        import inspect
+        import sys
+        module_name = inspect.currentframe().f_back.f_globals["__name__"] # I'm afraid it's too fragile
+        module = sys.modules[module_name]
+        setattr(module, self.function_name, Definition)
+
+        return None
+
+
+
 
 
 
