@@ -30,10 +30,12 @@ def Definition():
         "local_server": local_AW_server
     }
 
-    import inspect
+    # import inspect
+    # import sys
+    # module_name = inspect.currentframe().f_back.f_globals["__name__"] # I'm afraid it's too fragile
+    # module = sys.modules[module_name]
     import sys
-    module_name = inspect.currentframe().f_back.f_globals["__name__"] # I'm afraid it's too fragile
-    module = sys.modules[module_name]
+    module = sys.modules['main']
     for key, value in objs.items():
         setattr(module, key, value)
     

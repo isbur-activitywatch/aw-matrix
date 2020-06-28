@@ -1,8 +1,10 @@
+# pylint: disable=wildcard-import
+
+
 import unittest
 
 
-from test.test_tweaks import *
+from test import *
 
 
-print(dir())
 unittest.main()
