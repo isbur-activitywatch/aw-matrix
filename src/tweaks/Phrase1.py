@@ -1,3 +1,5 @@
+# pylint: disable=no-self-argument,attribute-defined-outside-init
+
 from tweaks.Container import Container
 from tweaks.phrase_machine import define_meaning_of_phrase_
 
@@ -7,6 +9,7 @@ from tweaks.phrase_machine import define_meaning_of_phrase_
     name = "Phrase1",
     names_to_bind = ["buckets", "on", "local_server"]
 )
+
 class Definition():
 
     buckets = Container()    

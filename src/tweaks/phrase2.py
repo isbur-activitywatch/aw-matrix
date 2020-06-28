@@ -1,31 +1,35 @@
-from tweaks.Phrases import define_meaning_of_phrase_
+from tweaks.phrase_machine import define_meaning_of_phrase_
 
 
 @define_meaning_of_phrase_(
     "    Fetch | last-events /originating_at/ bucket",
-    name = "Phrase2"
+    name = "Phrase2",
+    names_to_bind = ["Fetch", "last", "events", "originating_at"]
 )
-def Definition():
-    Fetch | last-events /originating_at/ bucket
-    pass
 
-from .local_server import local_server
+class Definition():
+
+    from .Prefix import Prefix
+    @Prefix
+    def Fetch(events, source):
+        pass 
+    
+    from .Useless import useless_instance as last
+
+    from .Container import Container
+    events = Container()
+
+    from .Infix import Infix
+    @Infix
+    def originating_at(lefthand_operand, righthand_operand):
+        return (lefthand_operand, righthand_operand)
 
 
-class Last:
-    def __sub__(self, righthand_operand):
-        return righthand_operand
-last = Last()
-
-
-bucket = "foo"
 
 
 n_previous = local_server.get_event_count_from_
 
 
-
-from .phrase2 import *
 from .Phrases import Function_With_Prepositions
 @Function_With_Prepositions("Fetch | last-events /originating_at/ bucket")
 def Fetch(events=[], originating_at=""):
