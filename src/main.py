@@ -1,9 +1,10 @@
+# pylint: disable=undefined-variable
 import tweaks   # pylint: disable=unused-import
 
 
 def main():
     # print(globals().keys())
-    for bucket in buckets /on/ local_server:    # pylint: disable=undefined-variable
+    for bucket in buckets /on/ local_server:    
         pass
 #          Fetch | last-events /originating_at/ bucket
 #          Post | them(events) /to/ Synapse-server

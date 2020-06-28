@@ -1,87 +1,30 @@
+"""
+Fetch |, Post | - обёртки над функциями fetch, post, которые и делают всю грязную работу
+(остально всё суть перекладывание и перепаковывание аргументов)
+"""
 #     for bucket in buckets /on/ local_server:
+import tweaks.Phrase1
 #         Fetch | last-events /originating_at/ bucket
+import tweaks.Phrase2
 #         Post | them(events) /to/ Synapse-server
 
 
-# Common imports
-from tweaks.Container import Container    # just to call dibs on name to no to bind name in introspective manner using inspect module
-from tweaks.Phrases import define_meaning_of_phrase_
+# maybe some good ideas for testing
+"""
+>>> a = Preposition("a")
+>>> 1 /a/ 2 /a/ 3
+{'obj': 1, 'a': 3}
+
+>>> a = Preposition("a")
+>>> b = Preposition("b")
+>>> 1 /a/ 2 /b/ 3
+{'obj': 1, 'a': 2, 'b': 3}
 
 
-@define_meaning_of_phrase_(
-    "for bucket in buckets /on/ local_server:",
-    name = "Phrase1"
-)
-def Definition():
+Some more contentful examples:
 
-    buckets = Container()    
-
-    from tweaks.Infix import Infix
-    @Infix
-    def on (lefthand_operand, righthand_operand):
-        lefthand_operand.contents = righthand_operand.get("/api/0/buckets/").json()
-        return righthand_operand.get("/api/0/buckets/").json()
-
-    from tweaks.local_AW_server import local_AW_server
-
-    objs = {
-        "buckets": buckets,
-        "on": on,
-        "local_server": local_AW_server
-    }
-
-    # import inspect
-    # import sys
-    # module_name = inspect.currentframe().f_back.f_globals["__name__"] # I'm afraid it's too fragile
-    # module = sys.modules[module_name]
-    import sys
-    module = sys.modules['main']
-    for key, value in objs.items():
-        setattr(module, key, value)
-    
-
-
-
-
-
-####
-#### Second Phrase
-#### *    Fetch | last-events /originating_at/ bucket*
-####
-
-
-# from .phrase2 import *
-# from .Phrases import Function_With_Prepositions
-# @Function_With_Prepositions("Fetch | last-events /originating_at/ bucket")
-# def Fetch(events=[], originating_at=""):
-#     bucket = originating_at
-#     n_present = local_server.get_event_count_from_(bucket)
-#     events = local_server.get(
-#         "/api/0/buckets/"   +
-#                     bucket  +
-#                     "/events",
-#         params = {
-#             "limit": n_present - n_previous
-#         }
-#     )
-#     n_previous = n_present
-
-#     # from matrix_client import *
-#     # synapse_server.post(events)
-
-
-
-
-
-
-# # last-events должно быть то же, что и просто events 
-# # (например, пустой объект last и перегрузка оператора __rsub__ так, чтобы он ничего не делал)
-
-# # last-events /originating_at/ bucket
-# # /originating_at/ - извлекает события из ведра и кладёт их в events
-
-# def them(events):
-#     return events
-
-# # Fetch |, Post | - обёртки над функциями fetch, post, которые и делают всю грязную работу
-# # (остально всё суть перекладывание и перепаковывание аргументов)
+>>> last_events, bucket = ("foo","bar")
+>>> originating_at = Preposition("originating_at")
+>>> last_events /originating_at/ bucket
+{'obj': 'foo', 'originating_at': 'bar'}
+"""
