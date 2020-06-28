@@ -1,3 +1,5 @@
+# pylint: disable=no-self-argument,attribute-defined-outside-init
+
 from tweaks.Container import Container    
 from tweaks.phrase_machine import define_meaning_of_phrase_
 
@@ -13,8 +15,7 @@ class Definition():
     from .Prefix import Prefix
     @Prefix
     def Post(events, synapse_server):
-        # synapse_server.post(events)
-        pass
+        return synapse_server.post(events.contents)
 
     def them(events):
         return events
@@ -22,13 +23,10 @@ class Definition():
     from tweaks.Infix import Infix
     @Infix
     def to (lefthand_operand, righthand_operand):
-        # lefthand_operand.contents = righthand_operand.get("/api/0/buckets/").json()
-        # return righthand_operand.get("/api/0/buckets/").json()
-        # return (lefthand_operand, righthand_operand.some_magic())
-        pass
+        return (lefthand_operand, righthand_operand)
 
-    class Synapse:
-        pass
+    from .synapse_server import Synapse
+    Synapse = Synapse()
 
     from .Useless import useless_instance as server
 

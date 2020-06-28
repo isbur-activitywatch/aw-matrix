@@ -20,10 +20,13 @@ class Definition():
             "/api/0/buckets/"   +
                         bucket_id  +
                         "/events",
+            # params = {
+            #     "limit": n_present - local_server.buckets[bucket_id]["n_previous"]
+            # }
             params = {
-                "limit": n_present - local_server.buckets[bucket_id]["n_previous"]
+                "limit": n_present - local_server.buckets[bucket_id]["n_previous"] + 1
             }
-        )
+        ).json()
         local_server.buckets[bucket_id]["n_previous"] = n_present 
     
     from .Useless import useless_instance as last
