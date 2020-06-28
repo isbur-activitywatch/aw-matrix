@@ -9,9 +9,11 @@ class define_meaning_of_phrase_:
 
     def __call__(self, Definition):
 
+        # print(sys.modules.keys())
+
         for name in self.names_to_bind:
             setattr(
-                sys.modules['main'], 
+                sys.modules['tick'], 
                 name, 
                 getattr(
                     Definition, 
