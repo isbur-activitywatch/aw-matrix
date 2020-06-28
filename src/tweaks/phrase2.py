@@ -1,4 +1,7 @@
+# pylint: disable=no-self-argument,attribute-defined-outside-init
+
 from tweaks.phrase_machine import define_meaning_of_phrase_
+from .local_AW_server import local_AW_server as local_server
 
 
 @define_meaning_of_phrase_(
@@ -11,8 +14,17 @@ class Definition():
 
     from .Prefix import Prefix
     @Prefix
-    def Fetch(events, source):
-        pass 
+    def Fetch(events, bucket_id):
+        n_present = local_server.get_event_count_from_(bucket_id)
+        events.contents = local_server.get(
+            "/api/0/buckets/"   +
+                        bucket_id  +
+                        "/events",
+            params = {
+                "limit": n_present - local_server.buckets[bucket_id]["n_previous"]
+            }
+        )
+        local_server.buckets[bucket_id]["n_previous"] = n_present 
     
     from .Useless import useless_instance as last
 
@@ -23,27 +35,6 @@ class Definition():
     @Infix
     def originating_at(lefthand_operand, righthand_operand):
         return (lefthand_operand, righthand_operand)
-
-
-
-
-n_previous = local_server.get_event_count_from_
-
-
-from .Phrases import Function_With_Prepositions
-@Function_With_Prepositions("Fetch | last-events /originating_at/ bucket")
-def Fetch(events=[], originating_at=""):
-    bucket = originating_at
-    n_present = local_server.get_event_count_from_(bucket)
-    events = local_server.get(
-        "/api/0/buckets/"   +
-                    bucket  +
-                    "/events",
-        params = {
-            "limit": n_present - n_previous
-        }
-    )
-    n_previous = n_present
 
 
 

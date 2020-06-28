@@ -4,7 +4,7 @@
         "--init-hook",
         "import sys; sys.path.insert(0, \"c:/work/activitywatch/aw-matrix-client/src\")",
         "--disable",
-        "C0103,C0111,C0326"
+        "C0103,C0111,C0303,C0326"
     ],
     "python.testing.unittestArgs": [
         "-v",
