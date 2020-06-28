@@ -1,3 +1,14 @@
+from tweaks.Phrases import define_meaning_of_phrase_
+
+
+@define_meaning_of_phrase_(
+    "    Fetch | last-events /originating_at/ bucket",
+    name = "Phrase2"
+)
+def Definition():
+    Fetch | last-events /originating_at/ bucket
+    pass
+
 from .local_server import local_server
 
 

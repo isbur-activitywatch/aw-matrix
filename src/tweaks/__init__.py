@@ -4,8 +4,10 @@ Fetch |, Post | - обёртки над функциями fetch, post, кото
 """
 #     for bucket in buckets /on/ local_server:
 import tweaks.Phrase1
+
 #         Fetch | last-events /originating_at/ bucket
-import tweaks.Phrase2
+# import tweaks.Phrase2
+
 #         Post | them(events) /to/ Synapse-server
 
 
