@@ -1,43 +1,39 @@
-# def them(events):
-#     return events
-
-
 from tweaks.Container import Container    
-from tweaks.Phrases import define_meaning_of_phrase_
+from tweaks.phrase_machine import define_meaning_of_phrase_
 
 
 @define_meaning_of_phrase_(
-    "for bucket in buckets /on/ local_server:",
-    name = "Phrase3"
+    "    Post | them(events) /to/ Synapse-server",
+    name = "Phrase3",
+    names_to_bind = ["Post", "them", "to", "Synapse", "server"]
 )
-def Definition():
 
-    buckets = Container()    
+class Definition():
+
+    from .Prefix import Prefix
+    @Prefix
+    def Post(events, synapse_server):
+        # synapse_server.post(events)
+        pass
+
+    def them(events):
+        return events
 
     from tweaks.Infix import Infix
     @Infix
-    def on (lefthand_operand, righthand_operand):
-        lefthand_operand.contents = righthand_operand.get("/api/0/buckets/").json()
-        return righthand_operand.get("/api/0/buckets/").json()
+    def to (lefthand_operand, righthand_operand):
+        # lefthand_operand.contents = righthand_operand.get("/api/0/buckets/").json()
+        # return righthand_operand.get("/api/0/buckets/").json()
+        # return (lefthand_operand, righthand_operand.some_magic())
+        pass
 
-    from tweaks.local_AW_server import local_AW_server
+    class Synapse:
+        pass
 
-    objs = {
-        "buckets": buckets,
-        "on": on,
-        "local_server": local_AW_server
-    }
+    from .Useless import useless_instance as server
 
-    # import inspect
-    # import sys
-    # module_name = inspect.currentframe().f_back.f_globals["__name__"] # I'm afraid it's too fragile
-    # module = sys.modules[module_name]
-    import sys
-    module = sys.modules['main']
-    for key, value in objs.items():
-        setattr(module, key, value)
+
+
 
 
         
-    # from matrix_client import *
-#     # synapse_server.post(events)
