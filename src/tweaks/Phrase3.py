@@ -25,8 +25,7 @@ class Definition():
     def to (lefthand_operand, righthand_operand):
         return (lefthand_operand, righthand_operand)
 
-    from .synapse_server import Synapse
-    Synapse = Synapse()
+    import tweaks.synapse_client as Synapse
 
     from .Useless import useless_instance as server
 

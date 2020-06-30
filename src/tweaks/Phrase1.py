@@ -5,9 +5,9 @@ from tweaks.phrase_machine import define_meaning_of_phrase_
 
 
 @define_meaning_of_phrase_(
-    "for bucket in buckets /on/ local_server:",
+    "for bucket in buckets /on/ local_AW_server:",
     name = "Phrase1",
-    names_to_bind = ["buckets", "on", "local_server"]
+    names_to_bind = ["buckets", "on", "local_AW_server"]
 )
 
 class Definition():
@@ -17,7 +17,7 @@ class Definition():
     from tweaks.Infix import Infix
     @Infix
     def on (lefthand_operand, righthand_operand):
-        lefthand_operand.contents = righthand_operand.get("/api/0/buckets/").json()
-        return righthand_operand.get("/api/0/buckets/").json()
+        lefthand_operand.contents = righthand_operand.get_buckets()
+        return righthand_operand.get_buckets()
 
-    from tweaks.local_AW_server import local_AW_server as local_server
+    from .AW_client import AW_client as local_AW_server

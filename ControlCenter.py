@@ -4,7 +4,9 @@
 import unittest
 
 
-from test import *
+from main import *
+
+tick()
 
 
 unittest.main()

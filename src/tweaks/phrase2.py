@@ -1,7 +1,7 @@
 # pylint: disable=no-self-argument,attribute-defined-outside-init
 
 from tweaks.phrase_machine import define_meaning_of_phrase_
-from .local_AW_server import local_AW_server as local_server
+from .AW_client import AW_client as local_server
 
 
 @define_meaning_of_phrase_(
@@ -26,7 +26,7 @@ class Definition():
             params = {
                 "limit": n_present - local_server.buckets[bucket_id]["n_previous"] + 1
             }
-        ).json()
+        )
         local_server.buckets[bucket_id]["n_previous"] = n_present 
     
     from .Useless import useless_instance as last

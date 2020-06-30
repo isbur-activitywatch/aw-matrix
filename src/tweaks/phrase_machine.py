@@ -13,7 +13,7 @@ class define_meaning_of_phrase_:
 
         for name in self.names_to_bind:
             setattr(
-                sys.modules['tick'], 
+                sys.modules['main'], 
                 name, 
                 getattr(
                     Definition, 
