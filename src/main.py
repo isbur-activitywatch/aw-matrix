@@ -1,4 +1,5 @@
 # pylint: disable=undefined-variable
+print("Importing tweaks...")
 import tweaks   # pylint: disable=unused-import
 
 import time

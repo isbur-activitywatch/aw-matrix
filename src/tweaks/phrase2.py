@@ -1,7 +1,7 @@
 # pylint: disable=no-self-argument,attribute-defined-outside-init
 
 from tweaks.phrase_machine import define_meaning_of_phrase_
-from .AW_client import AW_client as local_server
+from .AW_proxy_client import AW_proxy_client as local_server
 
 
 @define_meaning_of_phrase_(

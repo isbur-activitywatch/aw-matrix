@@ -1,13 +1,19 @@
 import zmq
-import json
 
-class AW_client:
+class AW_proxy_client:
 
-    def __init__(self):
+    def __init__(self, RCVTIMEO = 30000):
+
+        self.RCVTIMEO = RCVTIMEO
+
         context = zmq.Context()
         self.socket = context.socket(zmq.REQ)
-        self.socket.setsockopt(zmq.RCVTIMEO, 30000)
-        self.socket.connect("tcp://localhost:5556")
+        self.socket.setsockopt(zmq.RCVTIMEO, RCVTIMEO)
+        self.socket.setsockopt(zmq.REQ_RELAXED, 1)
+        self.socket.connect("tcp://localhost:5557")
+
+        self.ping()
+        
         # Some check whether corresponding server is running?
         self.buckets = self.get_buckets_quickly()
     
@@ -42,6 +48,18 @@ class AW_client:
         r = ["get_event_count_from_", bucket_id, {}]
         self.socket.send_json(r)
         return self.socket.recv_json()
+    
+    def ping(self):
+        self.socket.setsockopt(zmq.RCVTIMEO, 2000)
+        self.socket.send_json(["ping", {}])
+        try:
+            a = self.socket.recv_json()
+        except:
+            self.socket.close()
+            raise
+        
+        self.socket.setsockopt(zmq.RCVTIMEO, self.RCVTIMEO)
 
 
-AW_client = AW_client()
+
+AW_proxy_client = AW_proxy_client()

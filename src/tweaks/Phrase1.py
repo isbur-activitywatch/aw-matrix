@@ -1,8 +1,11 @@
 # pylint: disable=no-self-argument,attribute-defined-outside-init
 
+print("Inside tweaks.Phrase1")
+
 from tweaks.Container import Container
 from tweaks.phrase_machine import define_meaning_of_phrase_
 
+print("defining phrase...")
 
 @define_meaning_of_phrase_(
     "for bucket in buckets /on/ local_AW_server:",
@@ -20,4 +23,5 @@ class Definition():
         lefthand_operand.contents = righthand_operand.get_buckets()
         return righthand_operand.get_buckets()
 
-    from .AW_client import AW_client as local_AW_server
+    print("Importing AW_client...")
+    from .AW_proxy_client import AW_proxy_client as local_AW_server
