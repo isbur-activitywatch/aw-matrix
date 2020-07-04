@@ -2,30 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "shell",
-            "command": [
-                "C:\\tools\\miniconda3\\shell\\condabin\\conda-hook.ps1;",
-                "conda activate aw-matrix;",
-                "c:\\work\\activitywatch\\aw-matrix-client\\run_tests.ps1"
-            ],
-            "problemMatcher": [],
-            "label": "powershell: run_tests.ps1",
-            "options": {
-                "shell": {
-                    "args": [
-                        "-ExecutionPolicy",
-                        "ByPass"
-                    ]
-                }
-            }
-        },
-        {
             "label": "AW proxy",
             "type": "shell",
             "command": [
                 "C:\\tools\\miniconda3\\shell\\condabin\\conda-hook.ps1;",
                 "conda activate aw-matrix;",
-                "python c:\\work\\activitywatch\\aw-proxy\\AW_proxy.py"
+                "cd c:\\work\\activitywatch\\aw-proxy\\;",
+                "python AW_proxy.py"
             ],
             "problemMatcher": []
         },
@@ -35,9 +18,17 @@
             "command": [
                 "C:\\tools\\miniconda3\\shell\\condabin\\conda-hook.ps1;",
                 "conda activate aw-matrix;",
-                "python c:\\work\\activitywatch\\synapse-proxy\\synapse_proxy.py"
+                "cd c:\\work\\activitywatch\\synapse-proxy\\;",
+                "python synapse_proxy.py"
             ],
             "problemMatcher": []
+        },
+        {
+            "label": "Workspace Init",
+            "dependsOn":[
+                "AW proxy",
+                "Synapse proxy"
+            ]
         }
     ]
 }
