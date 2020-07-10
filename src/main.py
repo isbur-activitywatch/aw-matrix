@@ -1,17 +1,8 @@
-# pylint: disable=undefined-variable
 print("Importing tweaks...")
-import tweaks   # pylint: disable=unused-import
-
-import time
+import tweaks
 
 
-def tick():
-    for bucket in buckets /on/ local_AW_server:
-        Fetch | last-events /originating_at/ bucket
-        Post | them(events) /to/ Synapse-server
-
-
-def run_routine():
-    while True:
-        tick()
-        time.sleep(1)
+def main():
+    local_AW_server >> Synapse_server
+    Synapse_server >> local_AW_server
+    # Do you feel... the smell of data in the air?
