@@ -9,8 +9,6 @@ class define_meaning_of_phrase_:
 
     def __call__(self, Definition):
 
-        # print(sys.modules.keys())
-
         for name in self.names_to_bind:
             setattr(
                 sys.modules['main'], 
@@ -20,13 +18,6 @@ class define_meaning_of_phrase_:
                     name
                 )
             )
-        # Definition()
 
-        # import inspect
-        # import sys
-        # module_name = inspect.currentframe().f_back.f_globals["__name__"] # I'm afraid it's too fragile
-        # module = sys.modules[module_name]
-        # setattr(module, self.function_name, Definition)
 
         return None
-

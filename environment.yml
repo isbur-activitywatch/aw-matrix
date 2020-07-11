@@ -1,0 +1,15 @@
+name: aw-matrix
+channels:
+  - defaults
+dependencies:
+  - jupyter
+  - jupyter_contrib_nbextensions
+  - libarchive
+  - requests
+  - pytest
+  - nose
+  - matrix_client
+  - pyzmq
+  - rope
+prefix: C:\tools\miniconda3\envs\aw-matrix
+

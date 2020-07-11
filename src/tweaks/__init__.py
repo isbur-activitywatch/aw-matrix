@@ -1,39 +1,16 @@
-"""
-Fetch |, Post | - обёртки над функциями fetch, post, которые и делают всю грязную работу
-(остально всё суть перекладывание и перепаковывание аргументов)
-"""
-
+# pylint: disable=import-outside-toplevel,wrong-import-position
 print("Inside tweaks.__init__")
 
-print("Phrase1")
-#     for bucket in buckets /on/ local_server:
-import tweaks.Phrase1
 
-print("Phrase2")
-#         Fetch | last-events /originating_at/ bucket
-import tweaks.Phrase2
-
-print("Phrase3")
-#         Post | them(events) /to/ Synapse-server
-import tweaks.Phrase3
+from .phrase_machine import define_meaning_of_phrase_
 
 
-# maybe some good ideas for testing
-"""
->>> a = Preposition("a")
->>> 1 /a/ 2 /a/ 3
-{'obj': 1, 'a': 3}
-
->>> a = Preposition("a")
->>> b = Preposition("b")
->>> 1 /a/ 2 /b/ 3
-{'obj': 1, 'a': 2, 'b': 3}
-
-
-Some more contentful examples:
-
->>> last_events, bucket = ("foo","bar")
->>> originating_at = Preposition("originating_at")
->>> last_events /originating_at/ bucket
-{'obj': 'foo', 'originating_at': 'bar'}
-"""
+@define_meaning_of_phrase_(
+    "There will be NO PHRASE",
+    name="just_two_objs",
+    names_to_bind=["local_AW_server", "Synapse_server"]
+)
+class Definition:
+    # Let's play our li'l game here
+    from .AW_proxy_client import AW_proxy_client as local_AW_server
+    import tweaks.Synapse_proxy_client as Synapse_server 
