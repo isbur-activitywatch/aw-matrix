@@ -20,7 +20,11 @@ jobs:
       uses: crazy-max/ghaction-chocolatey@v1.2.2
       with:
         args: install activitywatch
-
+    - name: Setup Miniconda
+      uses: goanpeca/setup-miniconda@v1.6.0
+      with:
+        environment-file: environment.yml
+        activate-environment: aw-matrix
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
