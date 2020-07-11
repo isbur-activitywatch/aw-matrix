@@ -1,6 +1,7 @@
 name: aw-matrix
 channels:
   - defaults
+  - conda-forge
 dependencies:
   - jupyter
   - jupyter_contrib_nbextensions
