@@ -12,10 +12,15 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
+    - name: Chocolatey Action
+      uses: crazy-max/ghaction-chocolatey@v1.2.2
+      with:
+        args: install activitywatch
+
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
